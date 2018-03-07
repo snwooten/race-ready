@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "race-ready",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An app for tracking your race training progress to make sure you're ready for race day",
   "engines": {
     "node": ">= 7.0.0"
   },
