@@ -1,14 +1,21 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
+//const Run = require('./run');
+
 
 const Race = db.define('race', {
-  date: {
-    type: Sequelize.Date,
-    validate: {
-      isEmpty: false
-    }
+  raceName: Sequelize.STRING,
+  raceDate: {
+    type: Sequelize.DATE,
+    allowNull: false
   },
-  name: Sequelize.STRING,
+  trainingStartDate: {
+    type: Sequelize.DATE,
+    set() {
+      this.setDataValue(this.raceDate - 126)
+    }
+  }
 })
+
 
 module.exports = Race;

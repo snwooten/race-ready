@@ -1,24 +1,16 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
+//const Race = require('./race');
 
-const Run = db.define('Run', {
+const Run = db.define('run', {
   distance: {
     type: Sequelize.FLOAT,
-    validate: {
-      isEmpty: false
-    }
   },
   date: {
-    type: Sequelize.DATE,
-    validate: {
-      isEmpty: false
-    }
+    type: Sequelize.STRING,
   },
-  Status: {
+  status: {
     type: Sequelize.ENUM('Completed', 'In Progress', 'Did Not Complete', 'Future Run'),
-    validate: {
-      isEmpty: false
-    }
   }
 })
 
