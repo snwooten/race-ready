@@ -50,7 +50,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', passport.authenticate('google', {scope: 'email'}))
+  router.get('/', passport.authenticate('google', {scope: ['email', 'https://www.googleapis.com/auth/fitness.activity.read', 'https://www.googleapis.com/auth/fitness.activity.write', 'https://www.googleapis.com/auth/fitness.location.read']}))
 
   router.get('/verify', passport.authenticate('google', {
     successRedirect: '/home',

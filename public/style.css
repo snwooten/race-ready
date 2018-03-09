@@ -19,3 +19,13 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.profile-photo {
+  height: 300px;
+  width: auto
+}
+
+.cal {
+  height: 300px;
+  width: auto
+}
