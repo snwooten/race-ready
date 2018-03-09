@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {getWorkout} from '../runData'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 
@@ -14,8 +13,8 @@ export const UserHome = (props) => {
 const events = [
       {
     title: 'All Day Event very long title',
-    startDate: new Date(2018, 1, 1),
-    endDate: new Date(2018, 1, 2),
+    startDate: new Date(2018, 3, 1),
+    endDate: new Date(2018, 3, 2),
   },
 ]
 
@@ -26,7 +25,7 @@ const events = [
       <div className="cal">
         <BigCalendar
             events={events}
-            views={['month', 'agenda']}
+            views={['month']}
             step={60}
             defaultDate={new Date(2018, 3, 1)}
             />
@@ -36,7 +35,6 @@ const events = [
 }
 
 
-console.log(getWorkout())
 /**
  * CONTAINER
  */

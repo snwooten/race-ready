@@ -7,7 +7,7 @@ import race from './race'
 import runs from './runs'
 import singleRun from './singleRun'
 
-const reducer = combineReducers({user})
+const reducer = combineReducers({user, race, runs, singleRun})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
