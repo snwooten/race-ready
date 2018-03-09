@@ -1,7 +1,6 @@
 const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_CALLBACK } = require('../../secrets.js');
 const {User} = require('../db/models')
 module.exports = router
 
@@ -18,6 +17,10 @@ module.exports = router
  * process.env.GOOGLE_CLIENT_SECRET = 'your google client secret'
  * process.env.GOOGLE_CALLBACK = '/your/google/callback'
  */
+
+// const GOOGLE_CLIENT_ID = '457946987395-f5hred2p8vbv6jsbgi60hqa3ji4l9oje.apps.googleusercontent.com'
+// const GOOGLE_CLIENT_SECRET = 'weB2LQErxwzy_OktmyA0wwfU'
+// const GOOGLE_CALLBACK = 'http://localhost:8080/auth/google/verify'
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
@@ -47,9 +50,9 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', passport.authenticate('google', {scope: 'email'}))
+  router.get('/', passport.authenticate('google', {scope: ['email', 'https://www.googleapis.com/auth/fitness.activity.read', 'https://www.googleapis.com/auth/fitness.activity.write', 'https://www.googleapis.com/auth/fitness.location.read']}))
 
-  router.get('/callback', passport.authenticate('google', {
+  router.get('/verify', passport.authenticate('google', {
     successRedirect: '/home',
     failureRedirect: '/login'
   }))
