@@ -21,7 +21,6 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
     const stravaId = profile.id
     const name = profile.displayName
     const email = profile.emails[0].value
-
     User.find({where: {stravaId}})
       .then(foundUser => (foundUser
         ? done(null, foundUser)
@@ -33,7 +32,7 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', passport.authenticate('strava', {scope: ['public']}))
+  router.get('/', passport.authenticate('strava', {scope: ['public', 'activities']}))
 
   router.get('/callback', passport.authenticate('strava', {
     successRedirect: '/home',
@@ -41,3 +40,4 @@ if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
   }))
 
 }
+

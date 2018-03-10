@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+//import {getWorkout} from '../runData'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 
@@ -18,6 +19,7 @@ const events = [
   },
 ]
 
+//console.log(getWorkout())
   return (
     <div>
       <h3>Welcome, {props.user.name}! Let's get running</h3>
