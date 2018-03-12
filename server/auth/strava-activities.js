@@ -1,11 +1,18 @@
+const strava = require('strava-v3');
+const router = require('express').Router()
+module.exports = router
 
-import axios from 'axios'
 
-const myAccessToken = process.env.STRAVA_ACCESS_TOKEN
-const id = 28848443
+router.get('/:stravaId', (req, res, next) => {
+  strava.athlete.listActivities(req.params.stravaId, (err, payload, limits) => {
+    if (!err) {
+      res.json(payload)
+    } else {
+      console.error(err);
+    }
+  })
+})
 
-export const getWorkout = () => {
-  return axios.get("https://www.strava.com/api/v3/activities?include_all_efforts=", myAccessToken)
-    .then(res => console.log(res.data))
-    .catch(err => console.error('fetching Strava data was unsuccessful', err))
-}
+
+//how do I get the user ID here?
+//how do I get the data to appear on the front end?

@@ -6,8 +6,9 @@ import user from './user'
 import race from './race'
 import runs from './runs'
 import singleRun from './singleRun'
+import runData from './runData'
 
-const reducer = combineReducers({user, race, runs, singleRun})
+const reducer = combineReducers({user, race, runs, singleRun, runData})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -19,3 +20,4 @@ export * from './user'
 export * from './race'
 export * from './runs'
 export * from './singleRun'
+export * from './runData'
