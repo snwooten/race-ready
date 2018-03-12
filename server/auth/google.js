@@ -18,9 +18,6 @@ module.exports = router
  * process.env.GOOGLE_CALLBACK = '/your/google/callback'
  */
 
-// const GOOGLE_CLIENT_ID = '457946987395-f5hred2p8vbv6jsbgi60hqa3ji4l9oje.apps.googleusercontent.com'
-// const GOOGLE_CLIENT_SECRET = 'weB2LQErxwzy_OktmyA0wwfU'
-// const GOOGLE_CALLBACK = 'http://localhost:8080/auth/google/verify'
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
