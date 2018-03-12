@@ -1,58 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {getWorkout} from '../runData'
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
+//import {getWorkout} from '../runData'
+import RunCal from './runCal'
+import RaceInfo from './race-info'
 
-BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
 /**
  * COMPONENT
  */
 export const UserHome = (props) => {
-const events = [
-      {
-    title: 'All Day Event very long title',
-    startDate: new Date(2018, 1, 1),
-    endDate: new Date(2018, 1, 2),
-  },
-]
-
   return (
     <div>
       <h3>Welcome, {props.user.name}! Let's get running</h3>
       <img className="profile-photo" src={props.user.photo} />
-      <div className="cal">
-        <BigCalendar
-            events={events}
-            views={['month', 'agenda']}
-            step={60}
-            defaultDate={new Date(2018, 3, 1)}
-            />
+      <div className="newRace-form">
+        <RaceInfo user={props.user} />
+      </div>
+      <div>
+        <p>key: c = run complete | f = future run | i = incomplete run</p>
+        <RunCal user={props.user} race={props.race}/>
       </div>
     </div>
   )
 }
 
 
-console.log(getWorkout())
 /**
  * CONTAINER
  */
 const mapState = (state) => {
   return {
-    email: state.user.email,
     user: state.user
   }
 }
 
 export default connect(mapState)(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
-

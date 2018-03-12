@@ -25,7 +25,7 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/strava/callback">{displayName} with Strava</a>
     </div>
   )
 }

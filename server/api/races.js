@@ -10,7 +10,7 @@ router.get('/:raceId', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  Race.create(req.body)
+   Race.create(req.body)
     .then(race => {
       res.status(204).json(race);
     })

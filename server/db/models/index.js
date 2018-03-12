@@ -1,6 +1,7 @@
 const User = require('./user');
 const Race = require('./race');
 const Run = require('./run');
+const Strava = require('./strava');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,6 +15,8 @@ User.hasMany(Run);
 Run.belongsTo(User);
 Run.belongsTo(Race);
 Race.hasMany(Run);
+User.hasMany(Strava);
+Strava.belongsTo(User);
 
 
 /**
@@ -23,5 +26,5 @@ Race.hasMany(Run);
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Race, Run
+  User, Race, Run, Strava
 }

@@ -5,15 +5,15 @@ const User = db.define('user', {
   name: Sequelize.STRING,
   photo: {
     type: Sequelize.STRING,
-    defaultValue: '/images/default-photo.jpg'
+    defaultValue: 'runnerPhoto.jpg'
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
   },
-  googleId: {
-    type: Sequelize.STRING
+  stravaId: {
+    type: Sequelize.INTEGER
   }
 })
 

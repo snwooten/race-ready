@@ -1,17 +1,25 @@
-import axios from 'axios'
+ import axios from 'axios'
 
-//action type
+const GET_STRAVA = 'GET_STRAVA'
+
+const getStrava = strava => ({type: GET_STRAVA, strava})
+
+const defaultStrava = []
+
+export const fetchStrava = (stravaId) => dispatch => {
+    axios.get(`/auth/activities/${stravaId}`)
+      .then(stravaData => dispatch(getStrava(stravaData.data)))
+      .catch(err => console.error(`Unable to fetch Strava data: ${stravaId}`, err))
+}
 
 
-//https://developers.google.com/fit/rest/v1/reference/users/dataSources/datasets
-//me is being used for userID - Google Fit only supports 'me' at this time
-//dataSourceId - data stream ID of the data source that created the dataset.
-//datasetId - Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-export const getWorkout = async() => {
-    await axios.get('https://www.googleapis.com/fitness/v1/users/me/dataSources/')
-      .then(res => console.log(res.data))
-      .catch(err => console.error('fetching the Google Fit data was unsuccessful', err))
+export default function reducer (state = defaultStrava, action) {
+  switch (action.type) {
+
+    case GET_STRAVA:
+      return action.strava
+
+    default:
+      return state
   }
-
-
-//https://www.googleapis.com/fitness/v1/users/me/dataSources
+}
