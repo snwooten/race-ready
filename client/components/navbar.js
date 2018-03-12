@@ -6,8 +6,8 @@ import {logout} from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>Race Ready</h1>
-    <nav>
+    <h1 className="rr">Race Ready</h1>
+    <nav className="container rr">
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -19,8 +19,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <a href="/auth/strava/callback">Login With Strava</a>
+          <a href="/auth/strava/callback">Sign Up With Strava </a>
         </div>
       )}
     </nav>

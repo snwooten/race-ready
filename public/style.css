@@ -1,8 +1,21 @@
+html {
+  height: 100%;
+}
+
 body {
+  min-height:  100%;
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: sans-serif;
+  color: darkblue;
 }
 
 a {
+  text-decoration: none;
+}
+
+Link {
   text-decoration: none;
 }
 
@@ -20,12 +33,52 @@ form div {
   display: inline-block;
 }
 
+.rr {
+  text-align: center;
+}
+
 .profile-photo {
   height: 300px;
-  width: auto
+  width: auto;
 }
 
 .cal {
   height: 500px;
-  width: auto
+  width: auto;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.container {
+  height: 100%;
+  width:  100%;
+}
+
+.story {
+  display: flex;
+ text-align: center;
+ justify-content: center;
+  line-height: 30px;
+  width: auto;
+  color: darkblue;
+}
+
+.home {
+  background-color: #E5E5FF;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  text-align: center;
+}
+
+.runChart {
+  background-color: #E5E5FF;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.calPage {
+  text-align: center;
 }

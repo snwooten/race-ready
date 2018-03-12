@@ -5,4 +5,6 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as RunCal} from './runCal'
+export {default as RecordedRuns} from './recordedRuns'
 export {Login, Signup} from './auth-form'

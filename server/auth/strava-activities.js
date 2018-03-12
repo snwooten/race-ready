@@ -13,6 +13,3 @@ router.get('/:stravaId', (req, res, next) => {
   })
 })
 
-
-//how do I get the user ID here?
-//how do I get the data to appear on the front end?

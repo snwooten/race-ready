@@ -7,25 +7,23 @@ import {auth} from '../store'
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/strava/callback">{displayName} with Strava</a>
+      <div className="story">
+        <p>
+          Track your training progress for your upcoming marathon so you can have your best race yet.
+          <br />
+          Just sign up or login with Strava above.
+          <br />
+          Don't have a Strava account?
+          Create one <a href="https://www.strava.com/">here</a>
+        </p>
+      </div>
     </div>
   )
 }
@@ -60,7 +58,7 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(auth(email, password, formName));
     }
   }
 }

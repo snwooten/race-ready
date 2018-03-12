@@ -9,6 +9,7 @@ export class RaceInfo extends Component {
     super(props);
   }
 
+
   render() {
     const {user} = this.props
 
@@ -28,7 +29,7 @@ export class RaceInfo extends Component {
             <input name="trainingStartDate" type="date" />
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button className="btn" type="submit">Submit</button>
           </div>
         </form>
       </div>
@@ -43,7 +44,7 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = (dispatch) => {
   return {
     onSubmit: (evt, userId) => {
       evt.preventDefault()
@@ -54,11 +55,9 @@ const mapDispatch = (dispatch, ownProps) => {
         userId
       }
       dispatch(newRace(aRace))
-      evt.target.raceName = ''
-      evt.target.raceDate = ''
-      evt.target.trainingStartDate = ''
-
-//dispatch(newRuns(marathonRuns))
+      evt.target.raceName.value = ''
+      evt.target.raceDate.value = ''
+      evt.target.trainingStartDate.value = ''
     }
   }
 }

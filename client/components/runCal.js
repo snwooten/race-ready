@@ -2,18 +2,11 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
-import { fetchStrava } from '../store/index'
-import { runDistances, runStatus, month, day } from '../runs'
+import { runDistances, runStatus, month, day, day2, runStatus2 } from '../runs'
 
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
 class RunCal extends Component {
-  constructor(props) {
-    super(props)
-  }
-  componentDidMount() {
-    this.props.loadStravaData()
-  }
   render() {
   let events = [];
   for (let i = 0; i <= 72; i++){
@@ -24,27 +17,41 @@ class RunCal extends Component {
     desc: 'Training Run'
     })
   }
-  console.log('runCal run data: ', this.props)
+let earlierMarathon = [];
+for (let i = 0; i <= 72; i++) {
+  if (this.props.runData.start_date_local  && this.props.runData.start_date_local === earlierMarathon.start){
+    earlierMarathon.push({
+      title: `${runDistances[i]} mile run - c`,
+      start: new Date(2018, month[i] - 6, day2[i] + 1),
+      end: new Date(2018, month[i] - 6, day2[i] + 2),
+      desc: 'Training Run'
+    })
+  } else {
+      earlierMarathon.push({
+        title: `${runDistances[i]} mile run - ${runStatus2[i]}`,
+        start: new Date(2018, month[i] - 6, day2[i] + 1),
+        end: new Date(2018, month[i] - 6, day2[i] + 2),
+        desc: 'Training Run'
+    })
+  }
+}
+
+  let nextRun = earlierMarathon.find(event => {
+          return event.start >= Date.now()
+        })
   return (
-    <div>
+    <div className="calPage">
+     <h2>{`${this.props.user.name}'s Training Calendar`}</h2>
+     <h4>{`Your Next Training Run is on ${moment(nextRun.start).format('MMMM D, YYYY')}`}</h4>
+     <h4>Your Next Race is on May 5, 2018</h4>
+     <p>key: c = run complete | f = future run | i = incomplete run</p>
       <div className="cal">
         <BigCalendar
-          events={events}
-          views={["month"]}
+          events={events, earlierMarathon}
+          views={['month']}
           step={60}
-          defaultDate={new Date(2018, 3, 1)}
+          defaultDate={new Date(2018, 2, 1)}
         />
-      </div>
-      <div>
-        {
-          this.props.runData.map(activity => {
-            return (
-              <div key={activity.id}>
-                <h5>{`${Math.ceil(activity.distance/1760)} miles completed on ${moment(activity.start_date_local).format('MMM D, YYYY')}`}</h5>
-              </div>
-            )
-          })
-        }
       </div>
     </div>
     )
@@ -57,16 +64,7 @@ const mapState = (state) => {
     race: state.race,
     runData: state.runData
   }
-};
-
-const mapDispatch = (dispatch, ownProps) => {
-  let id = ownProps.user.stravaId
-  return {
-    loadStravaData() {
-      dispatch(fetchStrava(id))
-    }
-  }
 }
 
 
- export default connect(mapState, mapDispatch)(RunCal);
+ export default connect(mapState)(RunCal);
